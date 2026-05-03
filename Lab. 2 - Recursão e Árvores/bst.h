@@ -5,6 +5,8 @@ typedef struct Node Node;
 
 typedef struct BST BST;
 
+#include "stack.h"
+
 // Operações para estrutura node
 
 /** 
@@ -50,7 +52,7 @@ int bst_height(Node* n);
  */
 void destroy_bst(BST* bst);
 
-// Caminhamentos
+// Caminhamentos recursivos
 
 /**
  * Caminhamento pre-order traversal recursivo
@@ -75,5 +77,8 @@ void rec_in_order_traversal(Node* t);
  * Visita nó 
  */
 void rec_post_order_traversal(Node* t);
+
+// Caminhamentos iterativos
+
 
 #endif
