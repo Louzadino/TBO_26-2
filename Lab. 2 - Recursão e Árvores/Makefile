@@ -9,7 +9,7 @@ CFLAGS = -Wall -Wextra -g -std=c11
 TARGET = main
 
 # Arquivos fonte (.c) necessários para este programa
-SOURCES = main.c bst.c
+SOURCES = main.c bst.c stack.c
 
 # Declara os alvos que não representam arquivos reais
 .PHONY: all clean val

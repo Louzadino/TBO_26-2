@@ -52,33 +52,63 @@ int bst_height(Node* n);
  */
 void destroy_bst(BST* bst);
 
-// Caminhamentos recursivos
+// CAMINHAMENTOS RECURSIVOS
+
+typedef void(*visit_func)(int key);
 
 /**
+ * Node* t deve ser a raiz da árvore
  * Caminhamento pre-order traversal recursivo
  * Visita nó 
  * Caminha recursivamente na sub arvore esquerda
  * Caminha recursivamente na sub arvore direita
  */
-void rec_pre_order_traversal(Node* t);
+void rec_pre_order_traversal(Node* t, visit_func v_func);
 
 /**
+ * Node* t deve ser a raiz da árvore
  * Caminhamento in-order traversal recursivo
  * Caminha recursivamente na sub arvore esquerda
  * Visita nó 
  * Caminha recursivamente na sub arvore direita
  */
-void rec_in_order_traversal(Node* t);
+void rec_in_order_traversal(Node* t, visit_func v_func);
 
 /**
- * Caminhamento in-order traversal recursivo
+ * Node* t deve ser a raiz da árvore
+ * Caminhamento post-order traversal recursivo
  * Caminha recursivamente na sub arvore esquerda
  * Caminha recursivamente na sub arvore direita
  * Visita nó 
  */
-void rec_post_order_traversal(Node* t);
+void rec_post_order_traversal(Node* t, visit_func v_func);
 
-// Caminhamentos iterativos
+// CAMINHAMENTOS ITERATIVOS
+/**
+ * Node* t deve ser a raiz da árvore
+ * Caminhamento pre-order traversal iterativo
+ * Visita nó 
+ * Caminha na sub arvore esquerda
+ * Caminha na sub arvore direita
+ */
+void it_pre_order_traversal(Node* t, visit_func v_func);
 
+/**
+ * Node* t deve ser a raiz da árvore
+ * Caminhamento in-order traversal iterativo
+ * Caminha na sub arvore esquerda
+ * Visita nó 
+ * Caminha na sub arvore direita
+ */
+void it_in_order_traversal(Node* t, visit_func v_func);
+
+/**
+ * Node* t deve ser a raiz da árvore
+ * Caminhamento post-order traversal iterativo
+ * Caminha na sub arvore esquerda
+ * Caminha na sub arvore direita
+ * Visita nó 
+ */
+void it_post_order_traversal(Node* t, visit_func v_func);
 
 #endif

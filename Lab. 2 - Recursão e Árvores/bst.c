@@ -122,45 +122,134 @@ void destroy_bst(BST* bst) {
     }
 }
 
-void rec_pre_order_traversal(Node* t) {
+void rec_pre_order_traversal(Node* t, visit_func v_func) {
 
     if (t == NULL) return;
     
     // Visitar nó
-    printf("%d\n", t->key);
+    v_func(t->key);
     
     // Visitar sub arvore da esquerda
-    rec_pre_order_traversal(t->left_node);
+    rec_pre_order_traversal(t->left_node, v_func);
 
     // Visitar sub arvore da direite
-    rec_pre_order_traversal(t->right_node);
+    rec_pre_order_traversal(t->right_node, v_func);
 }
 
-void rec_in_order_traversal(Node* t) {
+void rec_in_order_traversal(Node* t, visit_func v_func) {
 
     if (t == NULL) return;
 
     // Visitar sub arvore da esquerda
-    rec_pre_order_traversal(t->left_node);
+    rec_in_order_traversal(t->left_node, v_func);
 
     // Visitar nó
-    printf("%d\n", t->key);
+    v_func(t->key);
 
     // Visitar sub arvore da direite
-    rec_pre_order_traversal(t->right_node);
+    rec_in_order_traversal(t->right_node, v_func);
 }
 
-void rec_post_order_traversal(Node* t) {
+void rec_post_order_traversal(Node* t, visit_func v_func) {
 
     if (t == NULL) return;
 
     // Visitar sub arvore da esquerda
-    rec_pre_order_traversal(t->left_node);
+    rec_post_order_traversal(t->left_node, v_func);
 
     
     // Visitar sub arvore da direite
-    rec_pre_order_traversal(t->right_node);
+    rec_post_order_traversal(t->right_node, v_func);
     
     // Visitar nó
-    printf("%d\n", t->key);
+    v_func(t->key);
+}
+
+void it_pre_order_traversal(Node* t, visit_func v_func) {
+
+    if (t == NULL) return;
+
+    Stack* s = stack_create();
+    stack_push(s, t);
+
+    while (!stack_is_empty(s)) {
+        Node* n = (Node*) stack_pop(s); // Desempilha
+
+        v_func(n->key); // Visita
+
+        // empilha a direita primeiro, para que a esquerda saia antes
+        if (n->right_node != NULL) {
+            stack_push(s, n->right_node); // empilha
+        }
+        
+        if (n->left_node != NULL) {
+            stack_push(s, n->left_node); // empilha
+        }
+    }
+
+    stack_destroy(&s);
+}
+
+void it_in_order_traversal(Node* t, visit_func v_func) {
+    if (t == NULL || v_func ==  NULL) return;
+
+    Stack* s = stack_create();
+    Node* n = t;
+
+    while (n != NULL || !stack_is_empty(s)) {
+        // Cmainha para a esquerda, empilhando o caminho
+        while (n != NULL) {
+            stack_push(s, n);
+            n = n->left_node;
+        }
+
+        // Chegou ao fim e agora desempilha
+        n = (Node*) stack_pop(s);
+
+        // Visitar a raiz
+        v_func(n->key);
+
+        // Agora vai para a direita
+        n = n->right_node;
+    }
+
+    stack_destroy(&s);
+}
+
+void it_post_order_traversal(Node* t, visit_func v_func) {
+    if (t == NULL || v_func == NULL) return;
+
+    Stack *s = stack_create();
+    Node* last_visited = NULL; // Ultimo nó visitado
+    Node* n = t; // Nó atual que desce pela árvore
+
+    while (!stack_is_empty(s) || n != NULL) {
+        if (n != NULL) {
+            // Empilha o caminho para a esquerda
+            stack_push(s, n);
+            n = n->left_node;
+        } else {
+            // Volta do null para esquerda
+            // Pega o nó no topo da pilha
+            Node* n_top = (Node*) stack_top(s);
+
+            // Verifica se podemos ir para a sub-arvore da direita
+            if (n_top->right_node != NULL && last_visited != n_top->right_node) {
+                // Se o filha da direita existe e
+                // se ainda não o visitamos
+                n = n_top->right_node;
+            } else {
+                // Visita o nó do topo
+                v_func(n_top->key);
+
+                // Marca como visitado e remove da pilha
+                last_visited = (Node*) stack_pop(s);
+
+                // Mantem atual como null para que o loop
+                // continua a desempilhar na proxima iteração
+            }
+        }
+    }
+
+    stack_destroy(&s);
 }

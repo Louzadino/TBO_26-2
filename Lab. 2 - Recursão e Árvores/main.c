@@ -1,29 +1,72 @@
 #include <stdio.h>
-#include <time.h>
 #include <stdlib.h>
+#include <time.h>
 #include "bst.h"
 
-int main(int argc, char *argv[]) {
+void visit(int key) {
+    //printf("%d\n", key);
+    // FAZ NADA
+}
 
-    // Criação da árvore
-    if (argc != 2) printf("ERRO: argumentos do programa incorretos\n");
+int main() {
 
-    BST* bst = create_bst();
-
-    // Leitura da entrada de N chaves aleatórias
-    int N = atoi(argv[1]);
-
-    srand(time(NULL));
+    long N = 1000000;
     
-    for (int i = 0; i < N; i++) {
-        int new_key = rand();
-        Node* new_node = create_node(new_key);
+    // Configura o gerador aleatório (Exercício 2)
+    srand(time(NULL)); 
+
+    printf("Criando arvore com N = %ld...\n", N);
+    BST* bst = create_bst();
+    for (long i = 0; i < N; i++) {
+        Node* new_node = create_node(rand());
         insert_bst(bst, new_node);
     }
+    printf("arvore criada. Altura: %d\n", bst_height(bst_root(bst)));
+    printf("Iniciando medicoes de tempo...\n\n");
 
-    printf("%d\n", bst_height(bst_root(bst)));
+    clock_t start, end;
+    double tempo_cpu;
+
+    // Medindo Pre-order
+    start = clock();
+    rec_pre_order_traversal(bst_root(bst), visit);
+    end = clock();
+    tempo_cpu = ((double) (end - start)) / CLOCKS_PER_SEC;
+    printf("Pre-order (Recursivo):   %f segundos\n", tempo_cpu);
+
+    start = clock();
+    it_pre_order_traversal(bst_root(bst), visit);
+    end = clock();
+    tempo_cpu = ((double) (end - start)) / CLOCKS_PER_SEC;
+    printf("Pre-order (Nao-Recursivo): %f segundos\n\n", tempo_cpu);
+
+    // Medindo In-order
+    start = clock();
+    rec_in_order_traversal(bst_root(bst), visit);
+    end = clock();
+    tempo_cpu = ((double) (end - start)) / CLOCKS_PER_SEC;
+    printf("In-order (Recursivo):    %f segundos\n", tempo_cpu);
     
-    destroy_bst(bst);
+    start = clock();
+    it_in_order_traversal(bst_root(bst), visit);
+    end = clock();
+    tempo_cpu = ((double) (end - start)) / CLOCKS_PER_SEC;
+    printf("In-order (Nao-Recursivo):  %f segundos\n\n", tempo_cpu);
+    
 
+    // Medindo Post-order
+    start = clock();
+    rec_post_order_traversal(bst_root(bst), visit);
+    end = clock();
+    tempo_cpu = ((double) (end - start)) / CLOCKS_PER_SEC;
+    printf("Post-order (Recursivo):  %f segundos\n", tempo_cpu);
+
+    start = clock();
+    it_post_order_traversal(bst_root(bst), visit);
+    end = clock();
+    tempo_cpu = ((double) (end - start)) / CLOCKS_PER_SEC;
+    printf("Post-order (Nao-Recursivo):%f segundos\n\n", tempo_cpu);
+
+    destroy_bst(bst);
     return 0;
 }

@@ -18,10 +18,10 @@ Stack* stack_create(void);
 void stack_push(Stack* s, void* data);
 
 /**
- * Desempilha um dado passado como argumento da pilha
+ * Desempilha um dado do topo da pilha
  * Retorna o dado removido
  */
-void* stack_pop(Stack* s, void* data);
+void* stack_pop(Stack* s);
 
 /**
  * Informa se a pilha está vazia
