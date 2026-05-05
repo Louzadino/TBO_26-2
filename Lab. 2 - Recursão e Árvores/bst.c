@@ -122,55 +122,55 @@ void destroy_bst(BST* bst) {
     }
 }
 
-void rec_pre_order_traversal(Node* t, visit_func v_func) {
+void rec_pre_order_traversal(Node* root, visit_func v_func) {
 
-    if (t == NULL) return;
+    if (root == NULL) return;
     
     // Visitar nó
-    v_func(t->key);
+    v_func(root->key);
     
     // Visitar sub arvore da esquerda
-    rec_pre_order_traversal(t->left_node, v_func);
+    rec_pre_order_traversal(root->left_node, v_func);
 
     // Visitar sub arvore da direite
-    rec_pre_order_traversal(t->right_node, v_func);
+    rec_pre_order_traversal(root->right_node, v_func);
 }
 
-void rec_in_order_traversal(Node* t, visit_func v_func) {
+void rec_in_order_traversal(Node* root, visit_func v_func) {
 
-    if (t == NULL) return;
+    if (root == NULL) return;
 
     // Visitar sub arvore da esquerda
-    rec_in_order_traversal(t->left_node, v_func);
+    rec_in_order_traversal(root->left_node, v_func);
 
     // Visitar nó
-    v_func(t->key);
+    v_func(root->key);
 
     // Visitar sub arvore da direite
-    rec_in_order_traversal(t->right_node, v_func);
+    rec_in_order_traversal(root->right_node, v_func);
 }
 
-void rec_post_order_traversal(Node* t, visit_func v_func) {
+void rec_post_order_traversal(Node* root, visit_func v_func) {
 
-    if (t == NULL) return;
+    if (root == NULL) return;
 
     // Visitar sub arvore da esquerda
-    rec_post_order_traversal(t->left_node, v_func);
+    rec_post_order_traversal(root->left_node, v_func);
 
     
     // Visitar sub arvore da direite
-    rec_post_order_traversal(t->right_node, v_func);
+    rec_post_order_traversal(root->right_node, v_func);
     
     // Visitar nó
-    v_func(t->key);
+    v_func(root->key);
 }
 
-void it_pre_order_traversal(Node* t, visit_func v_func) {
+void it_pre_order_traversal(Node* root, visit_func v_func) {
 
-    if (t == NULL) return;
+    if (root == NULL) return;
 
     Stack* s = stack_create();
-    stack_push(s, t);
+    stack_push(s, root);
 
     while (!stack_is_empty(s)) {
         Node* n = (Node*) stack_pop(s); // Desempilha
@@ -190,11 +190,11 @@ void it_pre_order_traversal(Node* t, visit_func v_func) {
     stack_destroy(&s);
 }
 
-void it_in_order_traversal(Node* t, visit_func v_func) {
-    if (t == NULL || v_func ==  NULL) return;
+void it_in_order_traversal(Node* root, visit_func v_func) {
+    if (root == NULL || v_func ==  NULL) return;
 
     Stack* s = stack_create();
-    Node* n = t;
+    Node* n = root;
 
     while (n != NULL || !stack_is_empty(s)) {
         // Cmainha para a esquerda, empilhando o caminho
@@ -216,12 +216,12 @@ void it_in_order_traversal(Node* t, visit_func v_func) {
     stack_destroy(&s);
 }
 
-void it_post_order_traversal(Node* t, visit_func v_func) {
-    if (t == NULL || v_func == NULL) return;
+void it_post_order_traversal(Node* root, visit_func v_func) {
+    if (root == NULL || v_func == NULL) return;
 
     Stack *s = stack_create();
     Node* last_visited = NULL; // Ultimo nó visitado
-    Node* n = t; // Nó atual que desce pela árvore
+    Node* n = root; // Nó atual que desce pela árvore
 
     while (!stack_is_empty(s) || n != NULL) {
         if (n != NULL) {
@@ -252,4 +252,38 @@ void it_post_order_traversal(Node* t, visit_func v_func) {
     }
 
     stack_destroy(&s);
+}
+
+void it_level_order_traversal(Node* root, visit_func v_func) {
+    // verifica parametros
+    if (root && v_func) {
+        // cria a fila
+        Queue* q = queue_create();
+
+        // enfileirar a raiz
+        enqueue(q, root);
+
+        printf("chave raiz: %d\n", root->key);
+        
+        // iniciar o loop para percorrer os níveis da árvore
+        while (!queue_is_empty(q)) {
+            // desenfileira um no
+            Node* n = (Node*) dequeue(q);
+            printf("chave atual: %d\n", n->key);
+
+            // visita o nó atual
+            v_func(n->key);
+            
+            // enfileira os filhos da esquerda, depois da direita
+            if (n->left_node != NULL) {
+                enqueue(q, n->left_node);
+            }
+            
+            if (n->right_node != NULL) {
+                enqueue(q, n->right_node);
+            }
+        }
+
+        queue_destroy(&q);
+    }
 }

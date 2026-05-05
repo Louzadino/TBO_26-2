@@ -26,8 +26,7 @@ void queue_destroy(Queue** f_ptr) {
     }
 }
 
-bool queue_is_empty(Queue* f) {// Guilherme Louzada Figueiredo (2023102356)
-
+bool queue_is_empty(Queue* f) {
     return f->n == 0;
 }
 
@@ -42,7 +41,7 @@ void enqueue(Queue* f, void* data) {
     }
     
     f->data[f->last] = data;
-    f->last = (f->last + 1) % MAX_QUEUE; // Avança o fim (circular)
+    f->last = (f->last + 1); // Avança o fim (circular)
     f->n++;
 }
 
@@ -53,7 +52,7 @@ void* dequeue(Queue* f) {
     }
 
     void* data = f->data[f->last];
-    f->init = (f->init + 1) % MAX_QUEUE; // Avança o início (circular)
+    f->init = (f->init + 1); // Avança o início (circular)
     f->n--;
     return data;
 }

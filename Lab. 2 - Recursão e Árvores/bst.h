@@ -6,6 +6,7 @@ typedef struct Node Node;
 typedef struct BST BST;
 
 #include "stack.h"
+#include "queue.h"
 
 // Operações para estrutura node
 
@@ -63,7 +64,7 @@ typedef void(*visit_func)(int key);
  * Caminha recursivamente na sub arvore esquerda
  * Caminha recursivamente na sub arvore direita
  */
-void rec_pre_order_traversal(Node* t, visit_func v_func);
+void rec_pre_order_traversal(Node* root, visit_func v_func);
 
 /**
  * Node* t deve ser a raiz da árvore
@@ -72,7 +73,7 @@ void rec_pre_order_traversal(Node* t, visit_func v_func);
  * Visita nó 
  * Caminha recursivamente na sub arvore direita
  */
-void rec_in_order_traversal(Node* t, visit_func v_func);
+void rec_in_order_traversal(Node* root, visit_func v_func);
 
 /**
  * Node* t deve ser a raiz da árvore
@@ -81,9 +82,10 @@ void rec_in_order_traversal(Node* t, visit_func v_func);
  * Caminha recursivamente na sub arvore direita
  * Visita nó 
  */
-void rec_post_order_traversal(Node* t, visit_func v_func);
+void rec_post_order_traversal(Node* root, visit_func v_func);
 
 // CAMINHAMENTOS ITERATIVOS
+
 /**
  * Node* t deve ser a raiz da árvore
  * Caminhamento pre-order traversal iterativo
@@ -91,7 +93,7 @@ void rec_post_order_traversal(Node* t, visit_func v_func);
  * Caminha na sub arvore esquerda
  * Caminha na sub arvore direita
  */
-void it_pre_order_traversal(Node* t, visit_func v_func);
+void it_pre_order_traversal(Node* root, visit_func v_func);
 
 /**
  * Node* t deve ser a raiz da árvore
@@ -100,7 +102,7 @@ void it_pre_order_traversal(Node* t, visit_func v_func);
  * Visita nó 
  * Caminha na sub arvore direita
  */
-void it_in_order_traversal(Node* t, visit_func v_func);
+void it_in_order_traversal(Node* root, visit_func v_func);
 
 /**
  * Node* t deve ser a raiz da árvore
@@ -109,6 +111,12 @@ void it_in_order_traversal(Node* t, visit_func v_func);
  * Caminha na sub arvore direita
  * Visita nó 
  */
-void it_post_order_traversal(Node* t, visit_func v_func);
+void it_post_order_traversal(Node* root, visit_func v_func);
+
+/**
+ * Todos os nós de um mesmo nível são visitados antes de passar
+ * para o próximo nível 
+ */
+void it_level_order_traversal(Node* root, visit_func v_func);
 
 #endif

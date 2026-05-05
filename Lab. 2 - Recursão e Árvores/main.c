@@ -4,13 +4,13 @@
 #include "bst.h"
 
 void visit(int key) {
-    //printf("%d\n", key);
+    printf("%d\n", key);
     // FAZ NADA
 }
 
 int main() {
 
-    long N = 1000000;
+    long N = 5;
     
     // Configura o gerador aleatório (Exercício 2)
     srand(time(NULL)); 
@@ -66,6 +66,13 @@ int main() {
     end = clock();
     tempo_cpu = ((double) (end - start)) / CLOCKS_PER_SEC;
     printf("Post-order (Nao-Recursivo):%f segundos\n\n", tempo_cpu);
+
+    // Medindo Level-order
+    start = clock();
+    it_level_order_traversal(bst_root(bst), visit);
+    end = clock();
+    tempo_cpu = ((double) (end - start)) / CLOCKS_PER_SEC;
+    printf("Level-order (Iterativo):  %f segundos\n", tempo_cpu);
 
     destroy_bst(bst);
     return 0;
