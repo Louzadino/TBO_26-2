@@ -43,3 +43,40 @@ Ordenação: 0.277886 segundos
 Ordenação: 27.853033 segundos
 ---------------------------------------------------
 ===================================================
+
+BUBBLE_SORT
+===================================================
+>> Testando caso: sorted
+   -> Tamanho 1000 [1K]:
+Ordenação: 0.000006 segundos
+   -> Tamanho 10000 [10K]:
+Ordenação: 0.000076 segundos
+   -> Tamanho 100000 [100K]:
+Ordenação: 0.000431 segundos
+---------------------------------------------------
+>> Testando caso: nearly_sorted
+   -> Tamanho 1000 [1K]:
+Ordenação: 0.000110 segundos
+   -> Tamanho 10000 [10K]:
+Ordenação: 0.001494 segundos
+   -> Tamanho 100000 [100K]:
+Ordenação: 0.023204 segundos
+---------------------------------------------------
+>> Testando caso: reverse_sorted
+   -> Tamanho 1000 [1K]:
+Ordenação: 0.003683 segundos
+   -> Tamanho 10000 [10K]:
+Ordenação: 0.364256 segundos
+   -> Tamanho 100000 [100K]:
+Ordenação: 36.354416 segundos
+---------------------------------------------------
+>> Testando caso: unif_rand
+   -> Tamanho 1000 [1K]:
+Ordenação: 0.003212 segundos
+   -> Tamanho 10000 [10K]:
+Ordenação: 0.318294 segundos
+   -> Tamanho 100000 [100K]:
+Ordenação: 53.929036 segundos
+---------------------------------------------------
+===================================================
+
