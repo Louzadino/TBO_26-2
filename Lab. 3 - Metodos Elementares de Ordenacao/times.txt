@@ -80,3 +80,38 @@ Ordenação: 53.929036 segundos
 ---------------------------------------------------
 ===================================================
 
+SHAKER_SORT
+===================================================
+>> Testando caso: sorted
+   -> Tamanho 1000 [1K]:
+Ordenação: 0.000005 segundos
+   -> Tamanho 10000 [10K]:
+Ordenação: 0.000049 segundos
+   -> Tamanho 100000 [100K]:
+Ordenação: 0.000488 segundos
+---------------------------------------------------
+>> Testando caso: nearly_sorted
+   -> Tamanho 1000 [1K]:
+Ordenação: 0.000050 segundos
+   -> Tamanho 10000 [10K]:
+Ordenação: 0.000476 segundos
+   -> Tamanho 100000 [100K]:
+Ordenação: 0.004784 segundos
+---------------------------------------------------
+>> Testando caso: reverse_sorted
+   -> Tamanho 1000 [1K]:
+Ordenação: 0.003260 segundos
+   -> Tamanho 10000 [10K]:
+Ordenação: 0.310539 segundos
+   -> Tamanho 100000 [100K]:
+Ordenação: 31.240063 segundos
+---------------------------------------------------
+>> Testando caso: unif_rand
+   -> Tamanho 1000 [1K]:
+Ordenação: 0.002666 segundos
+   -> Tamanho 10000 [10K]:
+Ordenação: 0.295705 segundos
+   -> Tamanho 100000 [100K]:
+Ordenação: 37.092019 segundos
+---------------------------------------------------
+===================================================
