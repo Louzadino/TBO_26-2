@@ -5,6 +5,13 @@
 
 extern void sort(Item *a, int lo, int hi);
 
+void print_array(Item* a, int N) {
+    for (int i = 0; i < N; i++) {
+        printf("%d", a[i]);
+        printf("\n");
+    }
+}
+
 int main(int argc, char** argv) {
     int N = atoi(argv[1]);
 
@@ -33,10 +40,7 @@ int main(int argc, char** argv) {
         cpu_time = ((double) (end - start)) / CLOCKS_PER_SEC;
         printf("Ordenação: %f segundos\n", cpu_time);
 
-        for (int i = 0; i < N; i++) {
-            printf("%d", itens[i]);
-            printf("\n");
-        }
+        //print_array(Item* a, int N)
     }
 
     if (itens) free(itens);

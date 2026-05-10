@@ -12,7 +12,7 @@ TARGET = main
 SOURCES = main.c insertion_sort.c
 
 # Valor padrão para N ao rodar o valgrind (pode ser alterado na linha de comando)
-N ?= 100000
+N ?= 100
 
 # Declara os alvos que não representam arquivos reais
 .PHONY: all clean val
