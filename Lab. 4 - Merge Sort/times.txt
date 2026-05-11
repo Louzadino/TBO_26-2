@@ -26,3 +26,30 @@ Ordenação: 0.380701 segundos
 ---------------------------------------------------
 ===================================================
 
+MERGE SORT TOP-DOWM RECURSIVO (COM CUTOFF=10 PARA INSERTION SORT)
+===================================================
+>> Testando caso: sorted
+   -> Tamanho 100000 [100000]:
+Ordenação: 0.014530 segundos
+   -> Tamanho 1000000 [1000000]:
+Ordenação: 0.168745 segundos
+---------------------------------------------------
+>> Testando caso: nearly_sorted
+   -> Tamanho 100000 [100000]:
+Ordenação: 0.014664 segundos
+   -> Tamanho 1000000 [1000000]:
+Ordenação: 0.171594 segundos
+---------------------------------------------------
+>> Testando caso: reverse_sorted
+   -> Tamanho 100000 [100000]:
+Ordenação: 0.016023 segundos
+   -> Tamanho 1000000 [1000000]:
+Ordenação: 0.189304 segundos
+---------------------------------------------------
+>> Testando caso: unif_rand
+   -> Tamanho 100000 [100000]:
+Ordenação: 0.030007 segundos
+   -> Tamanho 1000000 [1000000]:
+Ordenação: 0.356118 segundos
+---------------------------------------------------
+===================================================
