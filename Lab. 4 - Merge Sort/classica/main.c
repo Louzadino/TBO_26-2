@@ -6,6 +6,13 @@
 
 extern void sort(Item* a, int lo, int hi);
 
+void print_array(Item* a, int N) {
+    for (int i = 0; i < N; i++) {
+        printf("%d", a[i]);
+        printf("\n");
+    }
+}
+
 int main(int argc, char** argv) {
 
     // Receber número N de itens a serem ordenados
@@ -30,7 +37,7 @@ int main(int argc, char** argv) {
 
     // Se não houve erro na leitura dos valores, executa o algoritmo
     if (!erro) {
-        // 4. Exec da ordenação e medição do tempo
+        // Exec da ordenação e medição do tempo
         clock_t start, end;
         double tempo_cpu;
 
@@ -40,16 +47,10 @@ int main(int argc, char** argv) {
         tempo_cpu = ((double) (end - start)) / CLOCKS_PER_SEC;
         printf("Ordenação: %f segundos\n", tempo_cpu);
 
-        // 5. Print do array ordenado
-        /*
-        printf("Depois da ordenação: \n");
-        for (int i = 0; i < N; i++) {
-            printf("%d ", itens[i]);
-            printf("\n");
-        }
-        */
+        // Print do array ordenado
+        // print_array(itens, N);
     }
 
-    // 6. Liberar memória do array
+    // Liberar memória do array
     if (itens) free(itens);
 }
