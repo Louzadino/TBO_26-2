@@ -53,3 +53,31 @@ Ordenação: 0.030007 segundos
 Ordenação: 0.356118 segundos
 ---------------------------------------------------
 ===================================================
+
+MERGE SORT TOP-DOWM RECURSIVO (COM MERGE SKIP)
+===================================================
+>> Testando caso: sorted
+   -> Tamanho 100000 [100000]:
+Ordenação: 0.001217 segundos
+   -> Tamanho 1000000 [1000000]:
+Ordenação: 0.011826 segundos
+---------------------------------------------------
+>> Testando caso: nearly_sorted
+   -> Tamanho 100000 [100000]:
+Ordenação: 0.002637 segundos
+   -> Tamanho 1000000 [1000000]:
+Ordenação: 0.029190 segundos
+---------------------------------------------------
+>> Testando caso: reverse_sorted
+   -> Tamanho 100000 [100000]:
+Ordenação: 0.017618 segundos
+   -> Tamanho 1000000 [1000000]:
+Ordenação: 0.202836 segundos
+---------------------------------------------------
+>> Testando caso: unif_rand
+   -> Tamanho 100000 [100000]:
+Ordenação: 0.031526 segundos
+   -> Tamanho 1000000 [1000000]:
+Ordenação: 0.373816 segundos
+---------------------------------------------------
+===================================================
